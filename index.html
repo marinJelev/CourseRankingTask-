@@ -3,30 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Course Ranking — INFUSE</title>
+<title>LearnHub — Data Science Courses</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="wrap">
 
-  <header class="page-header">
-    <div class="bc">All categories › <span>Data Science</span></div>
-    <div class="ptitle">Data Science</div>
-    <div class="psub" id="psub">247 courses · sorted by best match</div>
-  </header>
-
-  <section class="formula-box" aria-label="Composite rank score breakdown">
-    <div class="ftitle">Composite rank score</div>
-    <div class="fweights" role="img" aria-label="Weights: Quality 35%, Engagement 25%, Freshness 20%, Fit 15%, Trend 5%">
-      <div class="fw" style="width:35%;background:#E1F5EE;color:#085041"><span class="fp">35%</span><span>Quality</span></div>
-      <div class="fw" style="width:25%;background:#EEEDFE;color:#3C3489"><span class="fp">25%</span><span>Engagement</span></div>
-      <div class="fw" style="width:20%;background:#FAEEDA;color:#854F0B"><span class="fp">20%</span><span>Freshness</span></div>
-      <div class="fw" style="width:15%;background:#FAECE7;color:#993C1D"><span class="fp">15%</span><span>Fit</span></div>
-      <div class="fw" style="width:5%;background:#E6F1FB;color:#185FA5"><span class="fp">5%</span><span>Trend</span></div>
+<!-- ── Site nav ── -->
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="LearnHub home">
+      <span class="logo-mark">L</span>
+      <span class="logo-text">LearnHub</span>
+    </a>
+    <div class="nav-search" role="search">
+      <i class="ti ti-search" aria-hidden="true"></i>
+      <input type="text" placeholder="Search for courses, topics, instructors…" aria-label="Search courses">
     </div>
-    <div class="fnote">Weights reviewed quarterly via A/B testing · Q · E · F · Fit score breakdown shown per card</div>
-  </section>
+    <div class="nav-links">
+      <a href="#">Browse</a>
+      <a href="#">My learning</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-btn-ghost">Log in</button>
+      <button class="nav-btn-solid">Sign up</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Category hero ── -->
+<div class="cat-hero">
+  <div class="cat-hero-inner">
+    <div class="cat-hero-text">
+      <p class="cat-hero-eyebrow">
+        <a href="#">All categories</a> <span aria-hidden="true">›</span> <a href="#">Technology</a> <span aria-hidden="true">›</span> <strong>Data Science</strong>
+      </p>
+      <h1 class="cat-hero-title">Data Science</h1>
+      <p class="cat-hero-desc">Master data analysis, machine learning, and AI with courses taught by industry experts. Build skills employers demand.</p>
+      <div class="cat-hero-stats">
+        <span><i class="ti ti-book-2" aria-hidden="true"></i> 247 courses</span>
+        <span><i class="ti ti-users" aria-hidden="true"></i> 1.2M+ learners</span>
+        <span><i class="ti ti-star-filled" aria-hidden="true"></i> 4.6 avg rating</span>
+      </div>
+    </div>
+    <div class="cat-hero-topics" aria-label="Popular topics">
+      <p class="topics-label">Popular topics</p>
+      <div class="topics-pills">
+        <a href="#" class="topic-pill active">All</a>
+        <a href="#" class="topic-pill">Python</a>
+        <a href="#" class="topic-pill">Machine Learning</a>
+        <a href="#" class="topic-pill">Deep Learning</a>
+        <a href="#" class="topic-pill">SQL</a>
+        <a href="#" class="topic-pill">NLP</a>
+        <a href="#" class="topic-pill">Statistics</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Main content ── -->
+<main class="wrap">
+
+  <div class="list-header">
+    <div>
+      <div class="psub" id="psub">247 courses · sorted by best match</div>
+    </div>
+  </div>
 
   <div class="toolbar">
     <button class="pill" id="btn-f" onclick="toggleDrawer()" aria-expanded="false" aria-controls="drawer">
@@ -40,7 +82,6 @@
     <label class="slbl" for="sort">Sort by</label>
     <select class="ssel" id="sort" onchange="run()">
       <option value="best">Best match</option>
-      <option value="rating">Highest rated</option>
       <option value="popular">Most popular</option>
       <option value="newest">Newest</option>
       <option value="trending">Trending</option>
@@ -100,7 +141,16 @@
     <div class="sht"><strong>4 new courses</strong> gathering reviews — will join ranked results once they reach 30 ratings.</div>
   </div>
 
-</div>
+</main>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-logo">LearnHub</span>
+    <span class="footer-copy">© 2025 LearnHub, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </div>
+</footer>
+
 <script src="app.js"></script>
 </body>
 </html>
