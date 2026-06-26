@@ -161,7 +161,7 @@ function run() {
 /* ── Render course cards ── */
 function renderCards(list, mode) {
   const labels = {
-    best: 'best match',
+    best: 'best match', rating: 'highest rated',
     popular: 'most popular', newest: 'newest', trending: 'trending'
   };
   const lbl = labels[mode] || 'best match';
