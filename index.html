@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Ranking — INFUSE</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page-header">
+    <div class="bc">All categories › <span>Data Science</span></div>
+    <div class="ptitle">Data Science</div>
+    <div class="psub" id="psub">247 courses · sorted by best match</div>
+  </header>
+
+  <section class="formula-box" aria-label="Composite rank score breakdown">
+    <div class="ftitle">Composite rank score</div>
+    <div class="fweights" role="img" aria-label="Weights: Quality 35%, Engagement 25%, Freshness 20%, Fit 15%, Trend 5%">
+      <div class="fw" style="width:35%;background:#E1F5EE;color:#085041"><span class="fp">35%</span><span>Quality</span></div>
+      <div class="fw" style="width:25%;background:#EEEDFE;color:#3C3489"><span class="fp">25%</span><span>Engagement</span></div>
+      <div class="fw" style="width:20%;background:#FAEEDA;color:#854F0B"><span class="fp">20%</span><span>Freshness</span></div>
+      <div class="fw" style="width:15%;background:#FAECE7;color:#993C1D"><span class="fp">15%</span><span>Fit</span></div>
+      <div class="fw" style="width:5%;background:#E6F1FB;color:#185FA5"><span class="fp">5%</span><span>Trend</span></div>
+    </div>
+    <div class="fnote">Weights reviewed quarterly via A/B testing · Q · E · F · Fit score breakdown shown per card</div>
+  </section>
+
+  <div class="toolbar">
+    <button class="pill" id="btn-f" onclick="toggleDrawer()" aria-expanded="false" aria-controls="drawer">
+      <i class="ti ti-adjustments-horizontal" aria-hidden="true"></i> Filters
+      <span class="badge" id="fbadge" style="display:none" aria-label="active filters count"></span>
+    </button>
+    <button class="pill" id="btn-r" onclick="qf('rating')"><i class="ti ti-star" aria-hidden="true"></i> Rating 4.0+</button>
+    <button class="pill" id="btn-c" onclick="qf('cert')"><i class="ti ti-certificate" aria-hidden="true"></i> Certificate</button>
+    <button class="pill" id="btn-fr" onclick="qf('free')"><i class="ti ti-currency-dollar" aria-hidden="true"></i> Free</button>
+    <div class="sp"></div>
+    <label class="slbl" for="sort">Sort by</label>
+    <select class="ssel" id="sort" onchange="run()">
+      <option value="best">Best match</option>
+      <option value="rating">Highest rated</option>
+      <option value="popular">Most popular</option>
+      <option value="newest">Newest</option>
+      <option value="trending">Trending</option>
+    </select>
+  </div>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="dgrid">
+      <div>
+        <div class="fgt">Skill level</div>
+        <label class="fo"><input type="checkbox" id="f-beg" onchange="run()"> Beginner <span class="fct">82</span></label>
+        <label class="fo"><input type="checkbox" id="f-int" onchange="run()"> Intermediate <span class="fct">119</span></label>
+        <label class="fo"><input type="checkbox" id="f-adv" onchange="run()"> Advanced <span class="fct">46</span></label>
+      </div>
+      <div>
+        <div class="fgt">Min rating</div>
+        <label class="fo"><input type="radio" name="mr" id="r45" value="4.5" onchange="run()"> 4.5+ <span class="fct">94</span></label>
+        <label class="fo"><input type="radio" name="mr" id="r40" value="4.0" onchange="run()"> 4.0+ <span class="fct">162</span></label>
+        <label class="fo"><input type="radio" name="mr" id="r35" value="3.5" onchange="run()"> 3.5+ <span class="fct">198</span></label>
+        <label class="fo"><input type="radio" name="mr" id="r0" value="0" checked onchange="run()"> Any <span class="fct">247</span></label>
+      </div>
+      <div>
+        <div class="fgt">Duration</div>
+        <label class="fo"><input type="checkbox" id="f-sh" onchange="run()"> Under 2h <span class="fct">31</span></label>
+        <label class="fo"><input type="checkbox" id="f-md" onchange="run()"> 2–10h <span class="fct">88</span></label>
+        <label class="fo"><input type="checkbox" id="f-lg" onchange="run()"> 10h+ <span class="fct">128</span></label>
+      </div>
+      <div>
+        <div class="fgt">Last updated</div>
+        <label class="fo"><input type="radio" name="fr" id="fr6" value="6" onchange="run()"> Within 6 months</label>
+        <label class="fo"><input type="radio" name="fr" id="fr12" value="12" onchange="run()"> Within 1 year</label>
+        <label class="fo"><input type="radio" name="fr" id="fr24" value="24" onchange="run()"> Within 2 years</label>
+        <label class="fo"><input type="radio" name="fr" id="fr99" value="999" checked onchange="run()"> Any time</label>
+      </div>
+      <div>
+        <div class="fgt">Other</div>
+        <label class="fo"><input type="checkbox" id="f-cert" onchange="run()"> Certificate</label>
+        <label class="fo"><input type="checkbox" id="f-free" onchange="run()"> Free only</label>
+      </div>
+    </div>
+    <div class="dfooter">
+      <span id="dc" class="dc-count"></span>
+      <div class="dfooter-btns">
+        <button class="btn bg" onclick="resetAll()">Reset all</button>
+        <button class="btn bp" onclick="closeDrawer()">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="arow" id="arow" aria-live="polite"></div>
+  <div class="rcount" id="rcount" aria-live="polite"></div>
+  <div class="cgrid" id="clist" role="list"></div>
+
+  <div class="sep">New arrivals — not yet ranked</div>
+  <div class="shelf">
+    <i class="ti ti-sparkles" aria-hidden="true"></i>
+    <div class="sht"><strong>4 new courses</strong> gathering reviews — will join ranked results once they reach 30 ratings.</div>
+  </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
